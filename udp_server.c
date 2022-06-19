@@ -12,7 +12,7 @@ int main ()
 	struct sockaddr_in my_addr, cl_addr;
 	int addrlen = sizeof(cl_addr);
 	char buf[64] = {0};
-	char msg[64] = {0};
+	char msg[] = "hello client";
 	
 	//1. 创建UDP socket
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
@@ -21,7 +21,7 @@ int main ()
 		return -1;
 	}
 	
-	while(1)
+	//while(1)
 	{	
 		//2. 绑定IP地址与端口号
 		bzero(&my_addr, sizeof(my_addr));
@@ -39,7 +39,7 @@ int main ()
 		printf("客户端请求：%s", buf);
 	
 	    //从控制台输入聊天信息
-		printf("输入向客户端返回的消息:\n");
+		//printf("输入向客户端返回的消息:\n");
 		//scanf("%s", msg);
 		//4. 发送服务器应答
 		sendto(sock, msg, strlen(msg), 0, (struct sockaddr *)&cl_addr, sizeof(cl_addr));
